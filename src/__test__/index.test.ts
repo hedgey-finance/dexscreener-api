@@ -1,4 +1,5 @@
 import {
+  getAveragePrice,
   getPairInformationByChain,
   getPairsMatchingBaseTokenAddress,
   searchPairsMatchingQuery,
@@ -8,7 +9,7 @@ const CONSTANTS = {
   BSC: "bsc",
   PAIR: "0x7213a321F1855CF1779f42c0CD85d3D95291D34C",
   TOKEN: "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
-  QUERY: "WBNB USDC"
+  QUERY: "WBNB USDC",
 };
 
 describe("DEX API", () => {
@@ -34,5 +35,12 @@ describe("DEX API", () => {
     const searchResponse = await searchPairsMatchingQuery(CONSTANTS.QUERY);
     expect(searchResponse.schemaVersion).toBe("1.0.0");
     expect(searchResponse.pairs.length).toBeGreaterThan(0);
+  });
+
+  it("should return the average price of a token", async () => {
+    const averagePrice = await getAveragePrice(
+      "0xb2e2650dfdb7b2dec4a4455a375ffbfd926ce5fc"
+    );
+    expect(averagePrice).toBeLessThan(1);
   });
 });

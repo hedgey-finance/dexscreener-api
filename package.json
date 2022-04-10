@@ -7,10 +7,15 @@
   "scripts": {
     "prepublish": "tsc",
     "test": "jest",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
     "lint": "eslint . --ext .ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hedgey-finance/dexscreener-api.git"
+  },
+  "homepage": "https://github.com/hedgey-finance/dexscreener-api",
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^27.4.1",
