@@ -41,8 +41,10 @@ export const getAveragePrice = async (tokenAddress: string): Promise<number | un
     const usdPrices = tokensResponse.pairs
       .filter((pair)=> pair.priceUsd)
       .map((pair) => Number(pair.priceUsd as string));
+    
+    if (usdPrices.length === 0) return 0;
 
-    return usdPrices.reduce((previousValue, currentValue) => (previousValue + currentValue)) / usdPrices.length;
+    return usdPrices.reduce((previousValue, currentValue) => (previousValue + currentValue), 0) / usdPrices.length;
   } catch (err) {
     if (err instanceof Error) console.error(`An error occurred retrieving the average usd price for token: ${tokenAddress}, ${err.message}`);
   }

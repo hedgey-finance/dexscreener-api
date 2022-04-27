@@ -43,4 +43,9 @@ describe("DEX API", () => {
     );
     expect(averagePrice).toBeLessThan(1);
   });
+
+  it("should not be so chatty when no pairs are found", async () => {
+    const averagePrice = await getAveragePrice('0x3a0ea4e0806805527c750ab9b34382642448468d');
+    expect(averagePrice).toBe(0);
+  });
 });
